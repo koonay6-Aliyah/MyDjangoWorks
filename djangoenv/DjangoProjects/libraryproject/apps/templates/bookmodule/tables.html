@@ -1,0 +1,148 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Tables Example {% endblock title %}
+
+{% block stylesheets %}
+<style>
+    .tables-container {
+        text-align: center;
+        font-family: "Times New Roman", serif;
+    }
+
+    /* الجدول 1 */
+    .fruit-table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 120px;
+    }
+
+    .fruit-table th, .fruit-table td {
+        border: 1px solid black;
+        padding: 2px 5px;
+        text-align: left;
+    }
+
+    .fruit-table th {
+        background-color: #f5f5f5;
+        text-align: center;
+    }
+
+    .fruit-table tr:last-child {
+        font-weight: bold;
+    }
+
+    /* الجدول 2 */
+    .camel-table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 500px;
+        border: 1px solid black;
+    }
+
+    .camel-table th, .camel-table td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .camel-table th {
+        background-color: #f5f5f5;
+    }
+
+    .camel-table img {
+        width: 150px;
+        height: 100px;
+    }
+
+    .title-cell {
+        font-weight: bold;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="tables-container">
+
+    <!-- عنوان الجدول 1 -->
+    <div style="font-weight: bold; margin-bottom: 5px;">
+        Table 1: Table<br>
+        of Fruits and<br>
+        Their Prices
+    </div>
+
+    <!-- الجدول 1 -->
+    <table class="fruit-table">
+        <tr>
+            <th>Fruit</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Apple</td>
+            <td>$0.25</td>
+        </tr>
+        <tr>
+            <td>Orange</td>
+            <td>$0.50</td>
+        </tr>
+        <tr>
+            <td>Banana</td>
+            <td>$1.00</td>
+        </tr>
+        <tr>
+            <td>Pineapple</td>
+            <td>$2.00</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>$3.75</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- عنوان الجدول 2 -->
+    <div style="font-size: 14px; margin-bottom: 5px;">Table 2: A more complex sample table</div>
+
+    <!-- الجدول 2 -->
+    <table class="camel-table">
+        <tr>
+            <td rowspan="2">
+                <img src="{% static 'desert.jpg' %}" alt="Desert">
+            </td>
+            <td colspan="4" class="title-cell">
+                Camelid comparison<br>
+                <span style="font-weight: normal;">Approximate as of 6/2011</span>
+            </td>
+        </tr>
+        <tr>
+            <th># of humps</th>
+            <th>Indigenous region</th>
+            <th>Spits?</th>
+            <th>Produces wool?</th>
+        </tr>
+        <tr>
+            <th>Dromedary</th>
+            <td>1</td>
+            <td>Arabian Peninsula</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <th>Camels (bactrian)</th>
+            <td>2</td>
+            <td>Africa/Asia</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <th>Llamas</th>
+            <td>1</td>
+            <td>Andes Mountains</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+</div>
+{% endblock content %}

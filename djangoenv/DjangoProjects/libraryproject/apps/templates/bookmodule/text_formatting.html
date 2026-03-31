@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Text Formatting {% endblock title %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock stylesheets %}
+{% block content %}
+<div class="formatting-container">
+    <h1>Example of Formatting tags</h1>
+
+    <div class="format-box">
+        <p><b>This is bold text</b> using &lt;b&gt; tag</p>
+        <p><strong>This is important text</strong> using &lt;strong&gt; tag</p>
+        <p><i>This is italic text</i> using &lt;i&gt; tag</p>
+        <p><em>This is emphasized text</em> using &lt;em&gt; tag</p>
+        <p><u>This is underlined text</u> using &lt;u&gt; tag</p>
+        <p><del>This is deleted text</del> using &lt;del&gt; tag</p>
+        <p><mark>This is marked text</mark> using &lt;mark&gt; tag</p>
+        <p>This is <sub>subscript</sub> using &lt;sub&gt; tag</p>
+        <p>This is <sup>superscript</sup> using &lt;sup&gt; tag</p>
+    </div>
+</div>
+{% endblock content %}

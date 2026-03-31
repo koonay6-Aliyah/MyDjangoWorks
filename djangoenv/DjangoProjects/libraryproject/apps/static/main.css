@@ -1,0 +1,171 @@
+/* ===== Task 1: Links Styles ===== */
+.link-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.link-box {
+    display: block;
+    padding: 15px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.link-green {
+    background-color: #90EE90;
+    color: #006400;
+}
+
+.link-green:hover {
+    background-color: #228B22;
+    color: white;
+}
+
+.link-gray {
+    background-color: #555555;
+    color: #FFD700;
+}
+
+.link-gray:hover {
+    background-color: #333333;
+    color: #FFA500;
+}
+
+.link-black {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.link-black:hover {
+    background-color: #333333;
+    color: #FF6347;
+}
+
+.link-box:link {
+    text-decoration: underline;
+}
+
+.link-box:visited {
+    color: purple;
+}
+
+.link-box:active {
+    color: red;
+    font-weight: bold;
+}
+/* ===== Task 2: Text Formatting ===== */
+.formatting-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.formatting-container h1 {
+    color: #2c3e50;
+    text-align: center;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.format-box {
+    background-color: #ecf0f1;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    line-height: 2;
+}
+
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.underline { text-decoration: underline; }
+.strike { text-decoration: line-through; }
+.highlight { background-color: yellow; }
+.sub { vertical-align: sub; font-size: smaller; }
+.sup { vertical-align: super; font-size: smaller; }
+/* ===== Task 3: Lists ===== */
+.lists-container {
+    font-family: "Times New Roman", serif;
+}
+
+.lists-container h1 {
+    background-color: #5a9aa0;
+    color: white;
+    padding: 15px;
+    margin: 0;
+    font-size: 28px;
+}
+
+.lists-container ul {
+    list-style-type: disc;
+    margin: 20px;
+    padding-left: 40px;
+}
+
+.lists-container ul ul {
+    list-style-type: circle;
+    margin: 5px 0;
+}
+
+.lists-container ol {
+    list-style-type: decimal;
+    margin: 5px 0;
+    padding-left: 40px;
+}
+
+.lists-container li {
+    margin: 8px 0;
+    font-size: 16px;
+}
+/* ===== Task 4: Tables ===== */
+.tables-container {
+    padding: 20px;
+    font-family: "Times New Roman", serif;
+    text-align: center;
+}
+
+/* الجدول 1 - الفواكه */
+.fruit-table {
+    margin: 0 auto 30px auto;
+    border-collapse: collapse;
+    width: 150px;
+    border: 2px solid black !important;
+}
+
+.fruit-table th {
+    border: 2px solid black !important;
+    padding: 3px 8px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+
+.fruit-table td {
+    border: 2px solid black !important;
+    padding: 3px 8px;
+    text-align: left;
+}
+
+/* الجدول 2 - الجمال */
+.camel-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 600px;
+    border: 2px solid black !important;
+}
+
+.camel-table th, .camel-table td {
+    border: 1px solid black !important;
+    padding: 8px;
+    text-align: center;
+}
+
+.camel-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.camel-table img {
+    width: 180px;
+    height: 120px;
+    display: block;
+}
