@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Task 3: Opposite of Task 2 (No editions > 3 and no 'qu')</h2>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Edition</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.edition }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No books found matching this criteria.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
