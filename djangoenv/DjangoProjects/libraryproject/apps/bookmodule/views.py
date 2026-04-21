@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Book ,Address ,Student #lab7&8
 from django.db.models import Q
-from django.db.models import Sum, Avg, Max, Min, Count
+from .models import Publisher, Lab9_Book, Author
+from django.db.models import Count, Sum, Avg, Min, Max, Q
 def index(request):
     name = request.GET.get("name") or "world!"
     return render(request, "bookmodule/index.html" , {"name": name})  #your render line
@@ -168,15 +169,75 @@ def lab8_task7(request):
 
 
 
+#lab9
+#from .models import Lab9_Book, Publisher, Author
+#from django.db.models import Count, Sum, Avg, Min, Max, Q
+
+# Task 1: قائمة الكتب مع نسبة التوفر (Transient Field)
+
+def lab9_task1(request):
+    # جلب جميع الكتب
+    books = Lab9_Book.objects.all()
+    
+    # حساب إجمالي عدد الكتب
+    total_books = sum(book.quantity for book in books)
+    
+    # إضافة حقل مؤقت (transient) لكل كتاب
+    for book in books:
+        book.availability = (book.quantity / total_books) * 100 if total_books > 0 else 0
+    
+    return render(request, 'bookmodule/lab9_task1.html', {'books': books})
 
 
 
+def lab9_task2(request):
+    publishers = Publisher.objects.annotate(
+        total_stock=Sum('lab9_book__quantity')  # ← quantity مش Count!
+    )
+    return render(request, 'bookmodule/lab9_task2.html', {'publishers': publishers})
+
+
+from django.db.models import Min
+
+def lab9_task3(request):
+    publishers = Publisher.objects.annotate(
+        oldest_book_date=Min('lab9_book__pubdate')
+    )
+    
+    # نجيب تفاصيل الكتاب الأقدم لكل ناشر
+    for pub in publishers:
+        pub.oldest_book = pub.lab9_book_set.order_by('pubdate').first()
+    
+    return render(request, 'bookmodule/lab9_task3.html', {'publishers': publishers})
 
 
 
+# Task 4: متوسط، أقل، وأعلى سعر لكل ناشر
+def lab9_task4(request):
+    publishers = Publisher.objects.annotate(
+        avg_price=Avg('lab9_book__price'),
+        min_price=Min('lab9_book__price'),
+        max_price=Max('lab9_book__price')
+    )
+    return render(request, 'bookmodule/lab9_task4.html', {'publishers': publishers})
 
+# Task 5: الناشرون مع عدد الكتب ذات التقييم العالي (>=4)
+def lab9_task5(request):
+    publishers = Publisher.objects.annotate(
+        high_rated_count=Count('lab9_book', filter=Q(lab9_book__rating__gte=4))
+    )
+    return render(request, 'bookmodule/lab9_task5.html', {'publishers': publishers})
 
-
+# Task 6: عد الكتب بشروط خاصة (السعر > 50 والكمية بين 1 و 5)
+def lab9_task6(request):
+    publishers = Publisher.objects.annotate(
+        special_count=Count('lab9_book', filter=Q(
+            lab9_book__price__gt=50, 
+            lab9_book__quantity__gte=1, 
+            lab9_book__quantity__lt=5
+        ))
+    )
+    return render(request, 'bookmodule/lab9_task6.html', {'publishers': publishers})
 
 
 

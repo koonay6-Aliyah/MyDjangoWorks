@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task 5 - High Rated</title>
+</head>
+
+<body>
+    <h2>عدد الكتب ذات التقييم العالي (>=4) لكل ناشر</h2>
+    <table border="1">
+        <tr>
+            <th>اسم الناشر</th>
+            <th>عدد الكتب ذات التقييم العالي</th>
+        </tr>
+        {% for pub in publishers %}
+        <tr>
+            <td>{{ pub.name }}</td>
+            <td>{{ pub.high_rated_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

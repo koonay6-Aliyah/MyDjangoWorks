@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task 3 - Oldest Book</title>
+</head>
+
+<body>
+    <h2>أقدم كتاب لكل ناشر (Annotations)</h2>
+    <table border="1">
+        <tr>
+            <th>اسم الناشر</th>
+            <th>عنوان الكتاب</th>
+            <th>تاريخ النشر</th>
+        </tr>
+        {% for pub in publishers %}
+        <tr>
+            <td>{{ pub.name }}</td>
+            <td>{{ pub.oldest_book.title|default:"لا يوجد كتب" }}</td>
+            <td>{{ pub.oldest_book.pubdate|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

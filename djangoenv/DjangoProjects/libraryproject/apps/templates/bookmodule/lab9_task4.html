@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task 4 - Price Stats</title>
+</head>
+
+<body>
+    <h2>إحصائيات أسعار الكتب لكل ناشر</h2>
+    <table border="1">
+        <tr>
+            <th>اسم الناشر</th>
+            <th>متوسط السعر</th>
+            <th>أقل سعر</th>
+            <th>أعلى سعر</th>
+        </tr>
+        {% for pub in publishers %}
+        <tr>
+            <td>{{ pub.name }}</td>
+            <td>{{ pub.avg_price|stringformat:".2f"|default:"0.00" }}</td>
+            <td>{{ pub.min_price|default:"-" }}</td>
+            <td>{{ pub.max_price|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

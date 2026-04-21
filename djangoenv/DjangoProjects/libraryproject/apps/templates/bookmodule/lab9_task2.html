@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task 2 - Total Stock</title>
+</head>
+
+<body>
+    <h2>إجمالي مخزون الكتب لكل ناشر (Annotations)</h2>
+    <table border="1">
+        <tr>
+            <th>اسم الناشر</th>
+            <th>إجمالي المخزون (Total Stock)</th>
+        </tr>
+        {% for pub in publishers %}
+        <tr>
+            <td>{{ pub.name }}</td>
+            <td>{{ pub.total_stock|default:"0" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

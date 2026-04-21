@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <title>Task 1 - Availability</title>
+</head>
+
+<body>
+    <h2>قائمة الكتب ونسبة توفرها (Transient Field)</h2>
+    <table border="1">
+        <tr>
+            <th>عنوان الكتاب</th>
+            <th>الكمية المتوفرة</th>
+            <th>النسبة المئوية للتوفر</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.quantity }}</td>
+            <td>{{ book.availability|floatformat:2 }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
