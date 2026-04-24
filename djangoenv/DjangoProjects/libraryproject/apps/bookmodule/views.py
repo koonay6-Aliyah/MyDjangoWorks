@@ -176,13 +176,10 @@ def lab8_task7(request):
 # Task 1: قائمة الكتب مع نسبة التوفر (Transient Field)
 
 def lab9_task1(request):
-    # جلب جميع الكتب
     books = Lab9_Book.objects.all()
     
-    # حساب إجمالي عدد الكتب
     total_books = sum(book.quantity for book in books)
     
-    # إضافة حقل مؤقت (transient) لكل كتاب
     for book in books:
         book.availability = (book.quantity / total_books) * 100 if total_books > 0 else 0
     
@@ -192,7 +189,7 @@ def lab9_task1(request):
 
 def lab9_task2(request):
     publishers = Publisher.objects.annotate(
-        total_stock=Sum('lab9_book__quantity')  # ← quantity مش Count!
+        total_stock=Sum('lab9_book__quantity')  
     )
     return render(request, 'bookmodule/lab9_task2.html', {'publishers': publishers})
 
