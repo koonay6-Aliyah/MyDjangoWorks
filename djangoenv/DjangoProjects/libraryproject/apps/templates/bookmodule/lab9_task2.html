@@ -16,6 +16,17 @@
         <tr>
             <td>{{ pub.name }}</td>
             <td>{{ pub.total_stock|default:"0" }}</td>
+            <td>
+                <ul>
+                    {% for book in pub.lab9_book_set.all %} <li>
+                        {{ book.title }} - المؤلفين:
+                        {% for author in book.authors.all %} {{ author.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+
         </tr>
         {% endfor %}
     </table>

@@ -173,20 +173,18 @@ def lab8_task7(request):
 #from .models import Lab9_Book, Publisher, Author
 #from django.db.models import Count, Sum, Avg, Min, Max, Q
 
-# Task 1: قائمة الكتب مع نسبة التوفر (Transient Field)
+# Task 1: قائمة الكتب مع نسبة التوفر 
 
 def lab9_task1(request):
     books = Lab9_Book.objects.all()
-    
     total_books = sum(book.quantity for book in books)
-    
     for book in books:
         book.availability = (book.quantity / total_books) * 100 if total_books > 0 else 0
     
     return render(request, 'bookmodule/lab9_task1.html', {'books': books})
 
 
-
+#task 2
 def lab9_task2(request):
     publishers = Publisher.objects.annotate(
         total_stock=Sum('lab9_book__quantity')  
@@ -194,8 +192,7 @@ def lab9_task2(request):
     return render(request, 'bookmodule/lab9_task2.html', {'publishers': publishers})
 
 
-from django.db.models import Min
-
+#task3
 def lab9_task3(request):
     publishers = Publisher.objects.annotate(
         oldest_book_date=Min('lab9_book__pubdate')
@@ -225,17 +222,14 @@ def lab9_task5(request):
     )
     return render(request, 'bookmodule/lab9_task5.html', {'publishers': publishers})
 
-# Task 6: عد الكتب بشروط خاصة (السعر > 50 والكمية بين 1 و 5)
 def lab9_task6(request):
+    # أو نستخدم اسم الموديل بحروف صغيرة كما في صفحة 14 من محاضرة 9
     publishers = Publisher.objects.annotate(
         special_count=Count('lab9_book', filter=Q(
             lab9_book__price__gt=50, 
             lab9_book__quantity__gte=1, 
-            lab9_book__quantity__lt=5
+            lab9_book__quantity__lte=5 
         ))
     )
     return render(request, 'bookmodule/lab9_task6.html', {'publishers': publishers})
-
-
-
 
