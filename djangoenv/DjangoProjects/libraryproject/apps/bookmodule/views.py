@@ -1,18 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Book ,Address ,Student #lab7&8
 from django.db.models import Q
 from .models import Publisher, Lab9_Book, Author
 from django.db.models import Count, Sum, Avg, Min, Max, Q
+#lab 2-5
 def index(request):
     name = request.GET.get("name") or "world!"
-    return render(request, "bookmodule/index.html" , {"name": name})  #your render line
+    return render(request, "bookmodule/index.html" , {"name": name})
+
 def index2(request, val1=0):
     try:
         val1 = int(val1)
         return HttpResponse("value1 = " + str(val1))
     except ValueError:
         return HttpResponse("error, expected val1 to be integer")
+    
 def viewbook(request, bookId):
     book1 = {'id': 123, 'title': 'Continuous Delivery', 'author': 'J. Humble and D. Farley'}
     book2 = {'id': 456, 'title': 'Secrets of Reverse Engineering', 'author': 'E. Eilam'}
@@ -43,6 +46,9 @@ def listing(request):
     return render(request, 'bookmodule/listing.html')
 def tables(request):
     return render(request, 'bookmodule/tables.html')
+
+
+#lab6
 def __getBooksList():
     book1 = {'id':12344321, 'title':'Continuous Delivery', 'author':'J.Humble and D. Farley'}
     book2 = {'id':56788765, 'title':'Reversing: Secrets of Reverse Engineering', 'author':'E. Eilam'}
@@ -70,6 +76,7 @@ def search(request):
         return render(request, 'bookmodule/bookList.html', {'books': newBooks})
 
     return render(request, 'bookmodule/search.html')
+#lab7
 def insert_data(request):
     Book.objects.create(
         title='Continuous Delivery',
@@ -79,6 +86,7 @@ def insert_data(request):
     )
 
     return HttpResponse("Books inserted successfully!")
+
 def insert_data(request):
     if Book.objects.count() == 0:
         Book.objects.create(
@@ -232,4 +240,94 @@ def lab9_task6(request):
         ))
     )
     return render(request, 'bookmodule/lab9_task6.html', {'publishers': publishers})
+
+
+
+#lab 10
+def list_books(request):
+    mybooks = Book.objects.all()
+    return render(request, 'bookmodule/listbooks.html', {'books': mybooks})
+def add_book(request):
+    if request.method == 'POST':
+        v_title = request.POST.get('title')
+        v_author = request.POST.get('author')
+        v_price = request.POST.get('price')
+        v_edition = request.POST.get('edition')
+        
+        Book.objects.create(title=v_title, author=v_author, price=v_price, edition=v_edition)
+        return redirect('/books/lab9_part1/listbooks')
+    
+    return render(request, 'bookmodule/addbook.html')
+def edit_book(request, id):
+    book = get_object_or_404(Book, id=id)
+    if request.method == 'POST':
+        book.title = request.POST.get('title')
+        book.author = request.POST.get('author')
+        book.price = request.POST.get('price')
+        book.edition = request.POST.get('edition')
+        book.save()
+        return redirect('/books/lab9_part1/listbooks')
+    return render(request, 'bookmodule/editbook.html', {'book': book})
+
+def delete_book(request, id):
+    book = get_object_or_404(Book, id=id)
+    book.delete()
+    return redirect('/books/lab9_part1/listbooks')
+
+
+#task2
+def list_books_p2(request):
+    books = Book.objects.all()
+    return render(request, 'bookmodule/lab9_part2/listbooks.html', {'books': books})
+from .forms import BookForm 
+def add_book_p2(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST) 
+        if form.is_valid(): 
+            form.save() 
+            return redirect('/books/lab9_part2/listbooks')
+    else:
+        form = BookForm() 
+    
+    return render(request, 'bookmodule/lab9_part2/addbook.html', {'form': form})
+
+def edit_book_p2(request, id):
+    book = get_object_or_404(Book, id=id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab9_part2/listbooks')
+    else:
+        form = BookForm(instance=book)
+    
+    return render(request, 'bookmodule/lab9_part2/editbook.html', {'form': form})
+
+def delete_book_p2(request, id):
+    book = get_object_or_404(Book, id=id)
+    book.delete()
+    return redirect('/books/lab9_part2/listbooks')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

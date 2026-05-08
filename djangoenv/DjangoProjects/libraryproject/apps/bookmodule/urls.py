@@ -5,7 +5,8 @@ urlpatterns = [
     path('list_books/', views.list_books, name="books.list_books"),
     path('<int:bookId>/', views.viewbook, name="books.view_one_book"),
     path('aboutus/', views.aboutus, name="books.aboutus"),
-    path('html5/links', views.links, name="books.links"),
+
+path('html5/links', views.links, name="books.links"),
 path('html5/text/formatting', views.text_formatting, name="books.text_formatting"),
 path('html5/listing', views.listing, name="books.listing"),
 path('html5/tables', views.tables, name="books.tables"),
@@ -31,5 +32,29 @@ path('lab8/task7', views.lab8_task7),
     path('lab9/task4', views.lab9_task4),
     path('lab9/task5', views.lab9_task5),
     path('lab9/task6', views.lab9_task6),
+
+#labe 10
+path('lab9_part1/listbooks', views.list_books, name='list_books'),
+path('lab9_part1/addbook', views.add_book, name='add_book'),
+path('lab9_part1/deletebook/<int:id>', views.delete_book, name='delete_book'),
+path('lab9_part1/editbook/<int:id>', views.edit_book, name='edit_book'),
+#2
+path('lab9_part2/listbooks', views.list_books_p2, name='list_books_p2'),
+path('lab9_part2/addbook', views.add_book_p2, name='add_book_p2'),
+path('lab9_part2/editbook/<int:id>', views.edit_book_p2, name='edit_book_p2'),
+path('lab9_part2/deletebook/<int:id>', views.delete_book_p2, name='delete_book_p2'),
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ]

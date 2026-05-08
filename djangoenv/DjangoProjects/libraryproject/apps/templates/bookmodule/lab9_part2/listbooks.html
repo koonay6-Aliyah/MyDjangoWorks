@@ -1,0 +1,56 @@
+<style>
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+    }
+
+    h2,
+    td,
+    th {
+        text-align: center;
+        font-size: 35px;
+    }
+
+    a {
+        font-size: 45px;
+
+    }
+</style>
+
+<h2 style="text-align: center; font-size: 45px;">قائمة الكتب المتاحة</h2>
+
+<div class="container">
+    <a href="/books/lab9_part1/addbook">
+        <h2>قائمة الكتب (Part 2 - Django Forms)</h2>
+    </a>
+</div>
+
+<table border="1">
+</table>
+<a href="/books/lab9_part2/addbook">إضافة كتاب جديد (بواسطة Form)</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>العنوان</th>
+            <th>المؤلف</th>
+            <th>السعر</th>
+            <th>الطبعة</th>
+            <th>العمليات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.edition }}</td>
+            <td>
+                <a href="/books/lab9_part2/editbook/{{ book.id }}">تعديل</a>
+                <a href="/books/lab9_part2/deletebook/{{ book.id }}">حذف</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

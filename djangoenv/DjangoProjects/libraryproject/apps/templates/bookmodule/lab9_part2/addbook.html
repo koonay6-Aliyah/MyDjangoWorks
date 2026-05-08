@@ -1,0 +1,12 @@
+<h2 style="text-align: center;">إضافة كتاب جديد (Django Forms)</h2>
+<form method="POST" style="text-align: center;">
+    {% csrf_token %}
+    <div style="display: inline-block; text-align: left;">
+        {{ form.as_p }} </div>
+    <br><br>
+    <button type="submit">حفظ الكتاب</button>
+</form>
+<br>
+<div style="text-align: center;">
+    <a href="/books/lab9_part2/listbooks">العودة للقائمة</a>
+</div>
